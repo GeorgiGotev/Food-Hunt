@@ -23,8 +23,11 @@ export default function usePersistedState(key, defaultValue) {
         } else {
             serializedValue = JSON.stringify(value);
         }
-
-        localStorage.setItem(key, serializedValue);
+        if(value===null){
+            localStorage.removeItem(key)
+        }else{
+            localStorage.setItem(key, serializedValue);
+        }
     };
 
     return [
