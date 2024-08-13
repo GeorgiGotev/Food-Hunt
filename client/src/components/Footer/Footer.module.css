@@ -1,0 +1,16 @@
+.footerSection {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  border-top: 1px solid grey;
+  background-color: grey;
+  text-align: center;
+  }
+  .footerSection>p{
+    color: white;
+  }
+  .footerDiv{
+    /* position: fixed; */
+    margin-top: 180px;
+  }
+  
