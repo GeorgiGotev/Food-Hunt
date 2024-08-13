@@ -12,41 +12,17 @@ export default function About (){
                             <div className="col-sm-8 py-5 my-5">
                                 <h2 className="mb-4">About Us</h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Consectetur, quisquam
-                                    accusantium nostrum modi, nemo, officia
-                                    veritatis ipsum facere maxime assumenda
-                                    voluptatum enim! Labore maiores placeat
-                                    impedit, vero sed est voluptas!Lorem ipsum
-                                    dolor sit amet, consectetur adipisicing
-                                    elit. Expedita alias dicta autem, maiores
-                                    doloremque quo perferendis, ut obcaecati
-                                    harum, <br />
+                                Welcome to <strong> Food-Recipes </strong>! I'm Georgi Gotev, a passionate home cook and the creator behind this vibrant community of food lovers. My journey into the culinary world started in my grandmother's cozy kitchen, where I first learned the joy of creating meals that bring people together. Over the years, I've honed my skills and developed a collection of recipes that I'm excited to share with you. <br />
                                     <br />
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Eum necessitatibus iste,
-                                    nulla recusandae porro minus nemo eaque cum
-                                    repudiandae quidem voluptate magnam
-                                    voluptatum? <br />
-                                    Nobis, saepe sapiente omnis qui eligendi
-                                    pariatur. quis voluptas. Assumenda facere
-                                    adipisci quaerat. Illum doloremque quae
-                                    omnis vitae.
+                                    But this site is about more than just my recipes—it's about our shared love for cooking. Here, you'll find a diverse array of recipes, from comforting classics to creative innovations, all contributed by a community of cooks just like you. Whether you're a seasoned chef or a kitchen novice, everyone is welcome to join in, share their favorite recipes, and discover new ones.
                                 </p>
                                 <p>
                                     <b>
-                                        Lonsectetur adipisicing elit. Blanditiis
-                                        aspernatur, ratione dolore vero
-                                        asperiores explicabo.
+                                    My goal is to make cooking approachable and fun, using fresh, seasonal ingredients and easy-to-follow techniques. But the best part of this site is the community aspect. You're not just a visitor here; you're a collaborator. You can add your own recipes, share your culinary stories, and connect with others who share your passion for food.
                                     </b>
                                 </p>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Eos ab itaque modi,
-                                    reprehenderit fugit soluta, molestias optio
-                                    repellat incidunt iure sed deserunt nemo
-                                    magnam rem explicabo vitae. Cum, nostrum,
-                                    quidem.
+                                Thank you for being part of this delicious journey. Together, we're creating a place where everyone can explore, create, and enjoy amazing food. Let's cook something great!
                                 </p>
                             </div>
                         </div>

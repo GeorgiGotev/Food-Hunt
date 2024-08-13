@@ -7,16 +7,16 @@ export default function Footer() {
                   <div className="row"> 
                     <div className="col-sm-4">
                         <h3>EMAIL US</h3>
-                        <p className="text-muted">info@website.com</p>
+                        <p className="text-muted">g.gotev@abv.bg</p>
                     </div>
                     <div className="col-sm-4">
                         <h3>CALL US</h3>
-                        <p className="text-muted">(123) 456-7890</p>
+                        <p className="text-muted">(+359) 878 45 44 88</p>
                     </div>
                     <div className="col-sm-4">
                         <h3>FIND US</h3>
                         <p className="text-muted">
-                            12345 Fake ST NoWhere AB Country
+                            Bulgaria, Burgas
                         </p>
                     </div>
                 </div> 
