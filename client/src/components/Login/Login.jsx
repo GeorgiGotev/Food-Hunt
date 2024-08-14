@@ -97,7 +97,7 @@ export default function Login() {
                         {error && <p className={styles.errorMessage}>{error}</p>}
 
                         <button
-                        // disabled={Object.values(loginError).some((x) => x !== "")}
+                        disabled={Object.values(loginError).some((x) => x !== "")}
                         >
                             login
                         </button>

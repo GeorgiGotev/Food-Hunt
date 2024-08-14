@@ -33,7 +33,6 @@ export default function RecipeDetails() {
 
 
     const onLikeHandler = async () => {
-        //add unlike func
         try {
             await recipeService.onLike(recipeId, recipe.liked, user.uid);
             likeRecipe(recipeId, user.uid)
@@ -85,8 +84,11 @@ export default function RecipeDetails() {
                                 {/* <h4 className={`pt20 pb20 ${styles.recipeName}`}>{recipe.name}</h4> */}
                                 <p className={styles.ulText}>Ingredients: </p>
                                 <ul className={styles.ingredientsList}>
-                                    {recipe.ingredients.split(',').map(x => <li key={recipe.id}>{x}</li>)}
+                                    {recipe.ingredients.split(',').map(x => <li key={recipe.id}> - {x}</li>)}
                                 </ul>
+
+
+
                                 <p className={styles.ulText}>Preparation:</p>
                                 <ul className={styles.ingredientsList}>
 
@@ -132,12 +134,16 @@ export default function RecipeDetails() {
                                                 >
                                                     Remove from favorite
                                                 </Link>
+
                                             </>
-                                        )}
+                                        )}    
                                     </h2>
+
+
                                 )}
                             </div>
                         </div>
+
                     </>
                 )}
             </div>

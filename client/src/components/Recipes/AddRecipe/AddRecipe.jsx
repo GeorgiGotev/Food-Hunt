@@ -10,9 +10,11 @@ import { useAuthContext } from "../../../contexts/AuthContext";
 export default function AddRecipe() {
     const { id } = useAuthContext();
     const { addRecipe } = useRecipesContext();
+
     const [error, setError] = useState();
+    const [createError, setCreateError] = useState({});
     const navigate = useNavigate();
-    // on blur error handler
+
     const onCreateRecipe = async (data) => {
         try {
             const newRecipe = await recipesService.create({
@@ -38,6 +40,55 @@ export default function AddRecipe() {
         preparation: "",
     });
 
+    const nameValidator = () => {
+        if (values.name.length < 3 || values.name.length > 15) {
+            setCreateError((state) => ({
+                ...state,
+                name: 'Name should be between 3 and 15 chars.'
+            }));
+        } else {
+            if (createError.name) {
+                setCreateError((state) => ({ ...state, name: '' }));
+            }
+        }
+    }
+    const imageValidator = () => {
+        if (!values.imageUrl.includes('www')) {
+            setCreateError((state) => ({
+                ...state,
+                imageUrl: 'Image Url should includes "www".'
+            }));
+        } else {
+            if (createError.imageUrl) {
+                setCreateError((state) => ({ ...state, imageUrl: '' }));
+            }
+        }
+    }
+    const ingredientsValidator = () => {
+        if (values.ingredients.length<10) {
+            setCreateError((state) => ({
+                ...state,
+                ingredients: 'Ingredients should be with more then 10 chars.'
+            }));
+        } else {
+            if (createError.ingredients) {
+                setCreateError((state) => ({ ...state, ingredients: '' }));
+            }
+        }
+    }
+    const preparationValidator = () => {
+        if (values.preparation.length<20) {
+            setCreateError((state) => ({
+                ...state,
+                preparation: 'Please tell us more about preparation process.'
+            }));
+        } else {
+            if (createError.preparation) {
+                setCreateError((state) => ({ ...state, preparation: '' }));
+            }
+        }
+    }
+
     return (
         <>
             <header className={style.headerRecipe}>
@@ -49,35 +100,52 @@ export default function AddRecipe() {
                             name="name"
                             value={values.name}
                             onChange={onChange}
+                            onBlur={nameValidator}
                             placeholder="recipe name"
                         />
+                        {createError.name && (
+                            <p className={style.errorMessage}>{createError.name}</p>
+                        )}
 
                         <input
                             type="text"
                             name="imageUrl"
                             value={values.imageUrl}
                             onChange={onChange}
+                            onBlur={imageValidator}
                             placeholder="www.somephoto.com"
                         />
+                        {createError.imageUrl && (
+                            <p className={style.errorMessage}>{createError.imageUrl}</p>
+                        )}
 
                         <input
                             type="text"
                             name="ingredients"
                             value={values.ingredients}
                             onChange={onChange}
+                            onBlur={ingredientsValidator}
                             placeholder="ingredients separated with comma"
                         />
+                        {createError.ingredients && (
+                            <p className={style.errorMessage}>{createError.ingredients}</p>
+                        )}
+                        
                         <textarea
-                            rows="4" 
+                            rows="4"
                             cols="34"
                             type="text"
                             name="preparation"
                             value={values.preparation}
                             onChange={onChange}
+                            onBlur={preparationValidator}
                             placeholder="preparation"
                         />
+                        {createError.preparation && (<p className={style.errorMessage}>{createError.preparation}</p>)}
+                        
                         {error && <p className={style.errorMessage}>{error}</p>}
-                        <button disabled={false}>Add</button>
+                        <button disabled={Object.values(createError).some((x) => x !== "")}>Add</button>
+                        
                     </form>
                 </div>
             </header>

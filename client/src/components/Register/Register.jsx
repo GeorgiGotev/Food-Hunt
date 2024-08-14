@@ -7,7 +7,7 @@ import useForm from "../../hooks/useForm";
 import style from "../Register/Register.module.css";
 
 export default function Register() {
-    const [errors, setErrors] = useState({});
+    const [registerErrors, setRegisterErrors] = useState({});
     const [error, setError] = useState()
     const { onLogin } = useAuthContext();
 
@@ -35,60 +35,60 @@ export default function Register() {
     });
     const nameValidator = () => {
         if (values.displayName.length < 2) {
-            setErrors((state) => ({
+            setRegisterErrors((state) => ({
                 ...state,
                 displayName: "Name should be at least 2 characters",
             }));
         } else {
-            if (errors.displayName) {
-                setErrors((state) => ({ ...state, displayName: "" }));
+            if (registerErrors.displayName) {
+                setRegisterErrors((state) => ({ ...state, displayName: "" }));
             }
         }
     };
     const emailValidator = () => {
         if (!values.email.includes("@")) {
-            setErrors((state) => ({
+            setRegisterErrors((state) => ({
                 ...state,
                 email: "E-mail should include '@', please enter a valid e-mail.",
             }));
         } else {
-            if (errors.email) {
-                setErrors((state) => ({ ...state, email: "" }));
+            if (registerErrors.email) {
+                setRegisterErrors((state) => ({ ...state, email: "" }));
             }
         }
     };
     const passwordValidator = () => {
         if (values.password.length < 6) {
-            setErrors((state) => ({
+            setRegisterErrors((state) => ({
                 ...state,
                 password: "Password should be at least 6 characters",
             }));
         } else {
-            if (errors.password) {
-                setErrors((state) => ({ ...state, password: "" }));
+            if (registerErrors.password) {
+                setRegisterErrors((state) => ({ ...state, password: "" }));
             }
         }
     };
 
     const rePasswordValidator = () => {
         if (values.password !== values.rePassword) {
-            setErrors((state) => ({
+            setRegisterErrors((state) => ({
                 ...state,
                 rePassword: "Passwords don't match!",
             }));
         } else {
-            if (errors.rePassword) {
-                setErrors((state) => ({ ...state, rePassword: "" }));
+            if (registerErrors.rePassword) {
+                setRegisterErrors((state) => ({ ...state, rePassword: "" }));
             }
         }
         if (values.rePassword.length < 6) {
-            setErrors((state) => ({
+            setRegisterErrors((state) => ({
                 ...state,
                 rePassword: "Repeat password should be at least 6 characters",
             }));
         } else {
-            if (errors.rePassword) {
-                setErrors((state) => ({ ...state, rePassword: "" }));
+            if (registerErrors.rePassword) {
+                setRegisterErrors((state) => ({ ...state, rePassword: "" }));
             }
         }
     };
@@ -102,7 +102,7 @@ export default function Register() {
                         className={`${style.register} ${style.form}`}
                     >
                         <h1>Register</h1>
-                        
+
                         <label htmlFor="username">Username</label>
                         <input
                             type="username"
@@ -112,8 +112,8 @@ export default function Register() {
                             onBlur={nameValidator}
                             placeholder="username"
                         />
-                        {errors.displayName && (
-                            <p className={style.errorMessage}>{errors.displayName}</p>
+                        {registerErrors.displayName && (
+                            <p className={style.errorMessage}>{registerErrors.displayName}</p>
                         )}
                         <label htmlFor="email">Email</label>
                         <input
@@ -125,8 +125,8 @@ export default function Register() {
                             onBlur={emailValidator}
                             placeholder="name@abv.bg"
                         />
-                        {errors.email && (
-                            <p className={style.errorMessage}>{errors.email}</p>
+                        {registerErrors.email && (
+                            <p className={style.errorMessage}>{registerErrors.email}</p>
                         )}
                         <label htmlFor="password">Password</label>
                         <input
@@ -138,8 +138,8 @@ export default function Register() {
                             onBlur={passwordValidator}
                             placeholder="*********"
                         />
-                        {errors.password && (
-                            <p className={style.errorMessage}>{errors.password}</p>
+                        {registerErrors.password && (
+                            <p className={style.errorMessage}>{registerErrors.password}</p>
                         )}
 
                         <label htmlFor="password">Repeat Password</label>
@@ -153,11 +153,13 @@ export default function Register() {
                             onBlur={rePasswordValidator}
                             placeholder="*********"
                         />
-                        {errors.rePassword && (
-                            <p className={style.errorMessage}>{errors.rePassword}</p>
+                        {registerErrors.rePassword && (
+                            <p className={style.errorMessage}>{registerErrors.rePassword}</p>
                         )}
                         {error && <p className={style.errorMessage}>{error}</p>}
-                        <button>
+                        <button
+                            disabled={Object.values(registerErrors).some((x) => x !== "")}
+                        >
                             create
                         </button>
                         <p className={style.message}>

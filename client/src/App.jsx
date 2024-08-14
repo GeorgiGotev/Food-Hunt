@@ -14,6 +14,7 @@ import AddRecipe from './components/Recipes/AddRecipe/AddRecipe';
 import Logout from './components/Logout/Logout';
 import RecipeDetails from './components/Recipes/RecipeDetails/RecipeDetails';
 import RecipeEdit from './components/Recipes/RecipeEdit/RecipeEdit';
+import AuthGuard from './components/Guards/AuthGuard';
 import { NotFound } from './components/NotFound/NotFound';
 
 //todo: add route guards and error handler notify after navbar, maybe like a new div...add error handler to 404???
@@ -27,12 +28,16 @@ function App() {
                     <Route path="/" element={<Home />}></Route>
                     <Route path="/login" element={<Login />}></Route>
                     <Route path="/register" element={<Register />}></Route>
-                    <Route path="/profile" element={<Profile />}></Route>
-                    <Route path="/add" element={<AddRecipe />}></Route>
                     <Route path="/recipes" element={<Recipes />}></Route>
                     <Route path="/recipes/:recipeId" element={<RecipeDetails />}></Route>
-                    <Route path="/recipes/:recipeId/edit" element={<RecipeEdit />}></Route>
-                    <Route path="/logout" element={<Logout />} />
+
+                    <Route element={<AuthGuard />}>
+                        <Route path="/add" element={<AddRecipe />}></Route>
+                        <Route path="/recipes/:recipeId/edit" element={<RecipeEdit />}></Route>
+                        <Route path="/profile" element={<Profile />}></Route>
+                        <Route path="/logout" element={<Logout />} />
+                    </Route>
+
                     <Route path="*" element={<NotFound />}></Route>
                 </Routes>
                 <Footer />

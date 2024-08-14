@@ -16,14 +16,26 @@ export const create = async (data) => {
     if (data.name.trim() === '') {
         throw new Error('Name of the product is mandatory.')
     }
+    if(data.name.length<3 || data.name.length>15){
+        throw new Error('Name should be between 3 and 15 chars.')
+    }
     if (data.imageUrl.trim() === '') {
         throw new Error('Image of the product is mandatory.')
+    }
+    if (!data.imageUrl.includes('www')) {
+        throw new Error('Image Url should include "www".')
     }
     if (data.ingredients.trim() === '') {
         throw new Error('Ingredients of the product is mandatory.')
     }
+    if(data.ingredients.length<10){
+        throw new Error('Ingredients should be with more then 10 chars.')
+    }
     if (data.preparation.trim() === '') {
         throw new Error('You should explain more about the preparation of the product.')
+    }
+    if (data.preparation.length<20) {
+        throw new Error('Please tell us more about preparation process.')
     }
     const dataRes = await addDoc(collection(db, 'recipes'), data);
 
