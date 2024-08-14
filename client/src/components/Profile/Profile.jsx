@@ -6,31 +6,58 @@ import { Link } from 'react-router-dom';
 import RecipeItem from '../Recipes/RecipeItem/RecipeItem';
 import Spinner from '../Spinner';
 import * as recipesService from '../../services/recipesService';
+import { useAuth, upload } from '../../lib/firebase';
+
 export default function Profile() {
+ 
+    const currentUser = useAuth()
+
     const { user, id } = useAuthContext();
-    const {  likedRecipes, ownRecipes, isLoading } = useRecipesContext();
+    const { likedRecipes, ownRecipes, isLoading } = useRecipesContext();
 
     const [profileRecipes, setProfileRecipes] = useState(likedRecipes(id));
 
+    const [photo, setPhoto] = useState(null);
+    const [photoUrl, setPhotoUrl] = useState('imgs/images.png');
+    const [loading, setLoading] = useState(false);
+
+
+    function changeHandler(e) {
+        if (e.target.files[0]) {
+            const currFile=e.target.files[0];
+            const blob= URL.createObjectURL(currFile)
+            setPhoto(currFile);
+            setPhotoUrl(blob);
+        }
+
+    }
+
+    function clickHandler() {
+        upload(photo, currentUser, setLoading);
+    }
+
     useEffect(() => {
         try {
+            if (!currentUser?.photoUrl) {
+                setPhotoUrl(currentUser.photoURL)
+            }
             recipesService.getLikedByUser(id)
-            .then(res => setProfileRecipes(res))
+                .then(res => setProfileRecipes(res))            
         } catch (err) {
             console.log(err);
         }
-    }, [id])
-
+    }, [currentUser])
     const ownRecipesShow = () => {
         setProfileRecipes(ownRecipes(id))
     }
     const favoriteRecipesShow = () => {
         setProfileRecipes(likedRecipes(id))
     }
-
+    console.log(photo);
+    
 
     return (
-        <>  
+        <>
             {/* sidebar? */}
             {/* <div className={styles.sidebare}>
                 <Link
@@ -47,19 +74,42 @@ export default function Profile() {
 
             <div className={styles.contentDiv}>
                 <div className={styles.card}>
-                    <img
-                        src="imgs/images.png"
-                        alt="Avatar"
-                        style={{ width: '10%' }}
-                    />
                     <div className={styles.container}>
-                        <p>User Information</p>
+
+                        <label>
+                            <form>
+                                <div className="avatar">
+                                    <div className="avatar-container avatar-size">
+                                        <img src={photoUrl} alt='avatar' className="avatar-image" />
+                                        <div className='edit-container'>
+                                            <div>📷</div>
+                                            <input className='file-input' type="file" onChange={changeHandler} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row justify-content-center avatar-upload">
+                                    <div className="col-sm-7 col-md-4 mb-5">
+                                        <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                                            <li className="nav-item">
+                                                <a disabled={loading || !photo} onClick={clickHandler} className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true"
+                                                >Upload</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </label>
+
+                        <h3>User details</h3>
                         <h4>
                             <p>{`name: ${user.displayName}`}</p>
                             <p>{`e-mail: ${user.email}`}</p>
                         </h4>
                     </div>
+
                 </div>
+
                 <div className={styles.gallery1}>
                     <h2 className={`${styles.space}`}>RECIPES</h2>
                 </div>

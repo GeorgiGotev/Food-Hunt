@@ -11406,3 +11406,55 @@ pre {
 .footer_section p{
   text-align: center;
 } */
+
+.avatar {
+  width: fit-content;
+  position: relative;
+
+}
+.avatar-container{
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #dadce0;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.avatar-image{
+border-radius: 50%;
+height: 100%;
+width: auto;
+}
+
+.avatar-size{
+  width: 10rem;
+  height: 10rem;
+}
+
+.edit-container{
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  background-color: rgba(32,33,36,0.6);
+  bottom: 0;
+  height: 33%;
+  left: 0;
+  position:absolute;
+  right: 0; 
+  opacity: 0;
+  text-align: center;
+  font-size: 200%;
+}
+
+.avatar-container:hover .edit-container{
+  opacity: 1;
+}
+
+.file-input{
+  display: none;
+}
+
+.avatar-upload{
+  margin-right: 50px;
+  margin-top: 20px;
+  margin-bottom: -20px;
+}
