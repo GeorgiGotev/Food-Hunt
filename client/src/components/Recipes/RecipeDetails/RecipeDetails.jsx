@@ -18,7 +18,6 @@ export default function RecipeDetails() {
     const currentRecipe = selectedRecipe(recipeId);
     const isOwner = currentRecipe.data?.ownerId === user.uid;
     const liked = currentRecipe.data?.liked.includes(user.uid)
-    // let arrIngredients = [];
     //generate shopping list from ingredients if own or liked recipe button show
     useEffect(() => {
         try {
@@ -84,7 +83,7 @@ export default function RecipeDetails() {
                                 {/* <h4 className={`pt20 pb20 ${styles.recipeName}`}>{recipe.name}</h4> */}
                                 <p className={styles.ulText}>Ingredients: </p>
                                 <ul className={styles.ingredientsList}>
-                                    {recipe.ingredients.split(',').map(x => <li key={recipe.id}> - {x}</li>)}
+                                    {recipe.ingredients.split(',').map(x => <li key={Math.floor((Math.random() * 100) + 1)}> - {x}</li>)}
                                 </ul>
 
 
@@ -92,7 +91,7 @@ export default function RecipeDetails() {
                                 <p className={styles.ulText}>Preparation:</p>
                                 <ul className={styles.ingredientsList}>
 
-                                    {recipe.preparation.split('\n').map(x => <li key={recipe.id}>{x}</li>)}
+                                    {recipe.preparation.split('\n').map(x => <li key={Math.floor((Math.random() * 100) + 1)}>{x}</li>)}
 
                                 </ul>
 
