@@ -9,7 +9,7 @@ import * as recipesService from '../../services/recipesService';
 import { useAuth, upload } from '../../lib/firebase';
 
 export default function Profile() {
- 
+
     const currentUser = useAuth()
 
     const { user, id } = useAuthContext();
@@ -24,8 +24,9 @@ export default function Profile() {
 
     function changeHandler(e) {
         if (e.target.files[0]) {
-            const currFile=e.target.files[0];
-            const blob= URL.createObjectURL(currFile)
+            const currFile = e.target.files[0];
+            const blob = URL.createObjectURL(currFile)
+
             setPhoto(currFile);
             setPhotoUrl(blob);
         }
@@ -34,6 +35,7 @@ export default function Profile() {
 
     function clickHandler() {
         upload(photo, currentUser, setLoading);
+        setPhoto('')
     }
 
     useEffect(() => {
@@ -42,7 +44,7 @@ export default function Profile() {
                 setPhotoUrl(currentUser.photoURL)
             }
             recipesService.getLikedByUser(id)
-                .then(res => setProfileRecipes(res))            
+                .then(res => setProfileRecipes(res))
         } catch (err) {
             console.log(err);
         }
@@ -54,7 +56,7 @@ export default function Profile() {
         setProfileRecipes(likedRecipes(id))
     }
     console.log(photo);
-    
+
 
     return (
         <>
@@ -87,21 +89,21 @@ export default function Profile() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="row justify-content-center avatar-upload">
+                                {photo && (<div className="row justify-content-center avatar-upload">
                                     <div className="col-sm-7 col-md-4 mb-5">
                                         <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item">
-                                                <a disabled={loading || !photo} onClick={clickHandler} className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true"
+                                                <a onClick={clickHandler} className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true"
                                                 >Upload</a>
                                             </li>
 
                                         </ul>
                                     </div>
-                                </div>
+                                </div>)}
                             </form>
                         </label>
 
-                        <h3>User details</h3>
+                        <h3>User details:</h3>
                         <h4>
                             <p>{`name: ${user.displayName}`}</p>
                             <p>{`e-mail: ${user.email}`}</p>
