@@ -11458,3 +11458,8 @@ width: auto;
   margin-top: 20px;
   margin-bottom: -20px;
 }
+
+.likes-s{
+  text-align: right;
+  margin-right: 10px;
+}

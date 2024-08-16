@@ -1,13 +1,14 @@
 import styles from "./Recipes.module.css";
 
-import {useRecipesContext} from "../../contexts/recipesContext";
+import { useRecipesContext } from "../../contexts/recipesContext";
 import RecipeItem from "./RecipeItem/RecipeItem";
 import Spinner from "../Spinner";
 
 export default function Recipes() {
   const { recipes, isLoading } = useRecipesContext();
-  //search bar???
-  //pagination
+
+  const sortedRecipes = recipes.sort((a, b) => b.data.liked.length - a.data.liked.length);
+
   return (
     <>
       <div
@@ -18,7 +19,7 @@ export default function Recipes() {
       </div>
       {isLoading && <Spinner />}
       <div className={`gallary row ${styles.customRow}`}>
-        {recipes.map((x) => (
+        {sortedRecipes.map((x) => (
           <RecipeItem key={x.data?.id} {...x} />
         ))}
       </div>
@@ -30,3 +31,4 @@ export default function Recipes() {
     </>
   );
 }
+

@@ -28,7 +28,7 @@ export default function RecipeDetails() {
             console.log(err);
         }
 
-    }, [recipeId]);
+    }, [recipeId, recipe.liked]);
 
 
     const onLikeHandler = async () => {
@@ -119,7 +119,7 @@ export default function RecipeDetails() {
                                                 className={`badge badge-primary ${styles.btnDetails}`}
                                             // to={`/recipes/${recipeId}`}
                                             >
-                                                Add to favorite
+                                                Like
                                             </Link>
                                         )}
                                         {!isOwner && liked && (
@@ -131,16 +131,15 @@ export default function RecipeDetails() {
                                                 //make it to profile/favorite
                                                 // to={`/profile`}
                                                 >
-                                                    Remove from favorite
+                                                    Unlike
                                                 </Link>
 
                                             </>
                                         )}    
                                     </h2>
-
-
                                 )}
                             </div>
+                        <h3 className="likes-s"> ❤️ {recipe.liked.length}</h3>
                         </div>
 
                     </>
