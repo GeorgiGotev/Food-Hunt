@@ -13,9 +13,7 @@ export default function RecipeItem({
                 className="gallary-img"
             />
             <Link to={`/recipes/${data.id}`} className="gallary-overlay">
-                <div>
                     <h2 className={styles.foodName}>{`${data.name}`}</h2>
-                </div>
             </Link>
         </div>
     );

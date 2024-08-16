@@ -43,10 +43,10 @@ export default function RecipeEdit() {
 
 
     const nameValidator = () => {
-        if (values.name.length < 3 || values.name.length > 15) {
+        if (values.name.length < 3 || values.name.length > 25) {
             setEditError((state) => ({
                 ...state,
-                name: 'Name should be between 3 and 15 chars.'
+                name: 'Name should be between 3 and 25 chars.'
             }));
         } else {
             if (editError.name) {

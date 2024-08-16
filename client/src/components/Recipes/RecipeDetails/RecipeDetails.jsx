@@ -13,9 +13,14 @@ export default function RecipeDetails() {
     const { user, isAuthenticated } = useAuthContext();
     const { deleteRecipe, selectedRecipe, likeRecipe, unlikeRecipe } = useRecipesContext();
 
-    const [recipe, setRecipe] = useState(false);
-
     const currentRecipe = selectedRecipe(recipeId);
+
+    const [recipe, setRecipe] = useState(false);
+    const [likesCounter, setLikesCounter] = useState(currentRecipe.data?.liked.length)
+    
+  
+
+
     const isOwner = currentRecipe.data?.ownerId === user.uid;
     const liked = currentRecipe.data?.liked.includes(user.uid)
     //generate shopping list from ingredients if own or liked recipe button show
@@ -28,12 +33,14 @@ export default function RecipeDetails() {
             console.log(err);
         }
 
-    }, [recipeId, recipe.liked]);
+    }, [recipeId]);
+
 
 
     const onLikeHandler = async () => {
         try {
             await recipeService.onLike(recipeId, recipe.liked, user.uid);
+            await setLikesCounter(likesCounter=>likesCounter+1);
             likeRecipe(recipeId, user.uid)
         } catch (err) {
             console.log(err);
@@ -43,6 +50,7 @@ export default function RecipeDetails() {
     const onUnlikeHandler = async () => {
         try {
             await recipeService.onUnlike(recipeId, recipe.liked, user.uid);
+            await setLikesCounter(likesCounter=>likesCounter-1);
             unlikeRecipe(recipeId, recipe.liked, user.uid)
         } catch (err) {
             console.log(err);
@@ -139,7 +147,9 @@ export default function RecipeDetails() {
                                     </h2>
                                 )}
                             </div>
-                        <h3 className="likes-s"> ❤️ {recipe.liked.length}</h3>
+                        
+                            <h3 className="likes-s"> ❤️ {likesCounter}</h3>
+                    
                         </div>
 
                     </>
@@ -148,3 +158,5 @@ export default function RecipeDetails() {
         </section>
     );
 }
+
+

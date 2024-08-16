@@ -19,8 +19,7 @@ export default function Profile() {
 
     const [photo, setPhoto] = useState(null);
     const [photoUrl, setPhotoUrl] = useState('imgs/images.png');
-    const [loading, setLoading] = useState(false);
-
+    const [loading, setLoading] = useState(true);
 
     function changeHandler(e) {
         if (e.target.files[0]) {
@@ -33,7 +32,7 @@ export default function Profile() {
 
     }
 
-    function clickHandler() {
+    function  clickHandler () {
         upload(photo, currentUser, setLoading);
         setPhoto('')
     }
@@ -41,7 +40,10 @@ export default function Profile() {
     useEffect(() => {
         try {
             if (!currentUser?.photoUrl) {
-                setPhotoUrl(currentUser.photoURL)
+                setPhotoUrl(currentUser?.photoURL)
+            }
+            if(!currentUser?.photoURL){
+                setPhotoUrl('imgs/images.png')
             }
             recipesService.getLikedByUser(id)
                 .then(res => setProfileRecipes(res))
@@ -55,7 +57,6 @@ export default function Profile() {
     const favoriteRecipesShow = () => {
         setProfileRecipes(likedRecipes(id))
     }
-    console.log(photo);
 
 
     return (
@@ -81,15 +82,16 @@ export default function Profile() {
                         <label>
                             <form>
                                 <div className="avatar">
-                                    <div className="avatar-container avatar-size">
-                                        <img src={photoUrl} alt='avatar' className="avatar-image" />
-                                        <div className='edit-container'>
-                                            <div>📷</div>
-                                            <input className='file-input' type="file" onChange={changeHandler} />
-                                        </div>
+                                <div className="avatar-container avatar-size">
+                                    <img src={photoUrl} alt='avatar' className="avatar-image" />
+                                    <div className='edit-container'>
+                                        <div>📷</div>
+                                        <input className='file-input' type="file" onChange={changeHandler} />
                                     </div>
                                 </div>
-                                {photo && (<div className="row justify-content-center avatar-upload">
+                            </div>
+                               
+                                {photo  && (<div className="row justify-content-center avatar-upload">
                                     <div className="col-sm-7 col-md-4 mb-5">
                                         <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
                                             <li className="nav-item">

@@ -16,8 +16,8 @@ export const create = async (data) => {
     if (data.name.trim() === '') {
         throw new Error('Name of the product is mandatory.')
     }
-    if(data.name.length<3 || data.name.length>15){
-        throw new Error('Name should be between 3 and 15 chars.')
+    if(data.name.length<3 || data.name.length>25){
+        throw new Error('Name should be between 3 and 25 chars.')
     }
     if (data.imageUrl.trim() === '') {
         throw new Error('Image of the product is mandatory.')

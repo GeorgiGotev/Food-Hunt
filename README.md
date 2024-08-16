@@ -13,20 +13,20 @@ Non-authenticated users can visit the application and are authorized to see and 
 
     * Register - allows the user to Register and perform authenticated operations afterwards
     * Login - allows the user to Login with an existing account and perform authenticated operations afterwards
-    * Recipes - allows the user to see all created recipes that have been added
+    * Recipes - allows the user to see all created recipes that have been added, sorted by likes
     * Recipes details - allows the user to see more details of a recipe such as its ingredients and preparation.
     
 Authenticated users (non-owners) can visit the application and are authorized to see and use:
 
     * Profile - allows the user to see who is logged in currently (with avatar which can be changed) and User information like e-mail/name as well as the recipes that have been liked by the current user and own ones in different tabs.
-    * Recipes - allows the user to see all created recipes that have been listed.
-    * Recipes details - allows the user to see more details of a recipe as well it is possible to add it to own favorite list.
+    * Recipes - allows the user to see all created recipes that have been listed, sorted by likes.
+    * Recipes details - allows the user to see more details of a recipe as well it is possible to add it to own favorite list by hitting like button.
     * Recipe create - allows the user to create own recipes.
 
 Authenticated users (owners) can visit the application and are authorized to see and use:
 
     * Profile - allows the user to see who is logged in currently (with avatar which can be changed) and User information like e-mail/name as well as the recipes that have been liked by the current user and own ones in different tabs.
-    * Recipes - allows the user to see all created recipes that have been listed.
+    * Recipes - allows the user to see all created recipes that have been listed, sorted by likes.
     * Recipes details - allows the user to see more details of a recipe as well it is possible to EDIT/DELETE it.
     * Recipe details edit - functionality that allows the user to change the details of an recipe that is under their ownership;
     * Recipe details delete - functionality that allows the user to delete an recipe that is under their ownership;
