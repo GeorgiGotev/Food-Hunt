@@ -32,7 +32,7 @@ export default function Profile() {
 
     }
 
-    function  clickHandler () {
+    function clickHandler() {
         upload(photo, currentUser, setLoading);
         setPhoto('')
     }
@@ -42,7 +42,7 @@ export default function Profile() {
             if (!currentUser?.photoUrl) {
                 setPhotoUrl(currentUser?.photoURL)
             }
-            if(!currentUser?.photoURL){
+            if (!currentUser?.photoURL) {
                 setPhotoUrl('imgs/images.png')
             }
             recipesService.getLikedByUser(id)
@@ -82,26 +82,27 @@ export default function Profile() {
                         <label>
                             <form>
                                 <div className="avatar">
-                                <div className="avatar-container avatar-size">
-                                    <img src={photoUrl} alt='avatar' className="avatar-image" />
-                                    <div className='edit-container'>
-                                        <div>📷</div>
-                                        <input className='file-input' type="file" onChange={changeHandler} />
+                                    <div className="avatar-container avatar-size">
+                                        <img src={photoUrl} alt='avatar' className="avatar-image" />
+                                        <div className='edit-container'>
+                                            <div>📷</div>
+                                            <input className='file-input' type="file" onChange={changeHandler} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                               
-                                {photo  && (<div className="row justify-content-center avatar-upload">
-                                    <div className="col-sm-7 col-md-4 mb-5">
-                                        <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
-                                            <li className="nav-item">
-                                                <a onClick={clickHandler} className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true"
-                                                >Upload</a>
-                                            </li>
 
-                                        </ul>
+                                {photo && (
+                                    <div className="row justify-content-center avatar-upload">
+                                        <div className="col-sm-7 col-md-4 mb-5">
+                                            <ul className="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                                                <li className="nav-item">
+                                                    <a onClick={clickHandler} className="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true"
+                                                    >Upload</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>)}
+                                )}
                             </form>
                         </label>
 

@@ -11410,7 +11410,7 @@ pre {
 .avatar {
   width: fit-content;
   position: relative;
-
+  margin-left: 60px;
 }
 .avatar-container{
   cursor: pointer;
@@ -11454,7 +11454,7 @@ width: auto;
 }
 
 .avatar-upload{
-  margin-right: 50px;
+  margin-left: 10px;
   margin-top: 20px;
   margin-bottom: -20px;
 }
